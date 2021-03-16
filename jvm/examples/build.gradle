@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+group 'pt.isel.pc'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+    implementation 'org.eclipse.jetty:jetty-servlet:9.4.31.v20200723'
+    implementation platform('io.projectreactor:reactor-bom:2020.0.2')
+    implementation 'io.projectreactor:reactor-core'
+
+    implementation "io.reactivex.rxjava3:rxjava:3.0.9"
+
+    runtime 'org.slf4j:slf4j-simple:1.7.30'
+    testImplementation 'junit:junit:4.12'
+}
