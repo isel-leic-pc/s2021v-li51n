@@ -187,7 +187,7 @@ public class ThreadingHazardsTests {
         ths.forEach(TestUtils::uninterruptibleJoin);
 
         int totalCount = synchronizedMapCounter.toList().stream()
-                .map(entry -> entry.getValue())
+                .map(Map.Entry::getValue)
                 .reduce(0, Integer::sum);
 
         assertEquals(N_OF_THREADS * N_OF_REPS, totalCount);
@@ -280,7 +280,7 @@ public class ThreadingHazardsTests {
         assertNotEquals(N_OF_THREADS * N_OF_REPS, acc);
     }
 
-    static class SynchronizedLinkedStack<T> {
+    static final class SynchronizedLinkedStack<T> {
 
         private final SimpleLinkedStack<T> stack = new SimpleLinkedStack<>();
         private final Object lock = new Object();
