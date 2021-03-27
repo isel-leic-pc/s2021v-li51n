@@ -15,7 +15,10 @@ public class SimpleSemaphore {
                 units -= 1;
                 return;
             }
-            theMonitor.wait();
+            while(!(units > 0)) {
+                theMonitor.wait(); // wait-set
+            }
+            // units > 0
             units -= 1;
         }
     }
@@ -24,6 +27,7 @@ public class SimpleSemaphore {
         synchronized (theMonitor) {
             units += 1;
             theMonitor.notify();
+            //theMonitor.notifyAll();
         }
     }
 }
