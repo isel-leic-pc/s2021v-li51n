@@ -2,8 +2,6 @@ package pt.isel.pc.examples.synchronizers;
 
 import pt.isel.pc.utils.Timeouts;
 
-import java.util.concurrent.TimeUnit;
-
 public class SimpleSemaphoreEvolution {
 
     /*
