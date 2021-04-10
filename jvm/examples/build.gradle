@@ -25,3 +25,16 @@ dependencies {
     runtime 'org.slf4j:slf4j-simple:1.7.30'
     testImplementation 'junit:junit:4.12'
 }
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed" //, "standardOut", "standardError"
+
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces true
+
+        showStandardStreams = false
+    }
+}

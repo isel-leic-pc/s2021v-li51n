@@ -3,7 +3,7 @@ package pt.isel.pc.examples.synchronizers;
 import pt.isel.pc.utils.NodeLinkedList;
 import pt.isel.pc.utils.Timeouts;
 
-public class NAryFifoSemaphore {
+public class NAryFifoSemaphore implements NArySemaphore{
 
     private final Object monitor = new Object();
 
@@ -16,6 +16,7 @@ public class NAryFifoSemaphore {
         units = initialUnits;
     }
 
+    @Override
     public boolean acquire(int unitsToAcquire, long timeout) throws InterruptedException {
         synchronized (monitor) {
             // 1. fast-path
@@ -61,6 +62,7 @@ public class NAryFifoSemaphore {
         }
     }
 
+    @Override
     public void release(int unitsToRelease) {
         synchronized (monitor) {
             units += unitsToRelease;

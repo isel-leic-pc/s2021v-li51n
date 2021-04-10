@@ -8,7 +8,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class NAryFifoSemaphoreWithKernelStyleAndSpecificNotification {
+public class NAryFifoSemaphoreWithKernelStyleAndSpecificNotification implements NArySemaphore{
 
     private final Lock monitor = new ReentrantLock();
 
@@ -31,6 +31,7 @@ public class NAryFifoSemaphoreWithKernelStyleAndSpecificNotification {
         units = initialUnits;
     }
 
+    @Override
     public boolean acquire(int unitsToAcquire, long timeout) throws InterruptedException {
         monitor.lock();
         try {
@@ -89,6 +90,7 @@ public class NAryFifoSemaphoreWithKernelStyleAndSpecificNotification {
         }
     }
 
+    @Override
     public void release(int unitsToRelease) {
         monitor.lock();
         try {
