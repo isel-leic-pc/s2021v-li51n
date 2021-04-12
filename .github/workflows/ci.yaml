@@ -13,4 +13,4 @@ jobs:
         with:
           java-version: 11
       - name: Build with Gradle
-        run: jvm/gradlew -p jvm test
+        run: jvm/gradlew -p jvm test --info

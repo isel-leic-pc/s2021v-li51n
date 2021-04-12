@@ -86,7 +86,7 @@ public class NArySemaphoreTests {
         long min = Collections.min(acquiredUnits);
         log.info("min acquired units = {}, max acquired units = {}, diff = {}",
                 min, max, max - min);
-        assertTrue("acquired units (max-min) must not exceed 1% of min",
+        assertTrue("acquired units (max-min) must not exceed 5% of min",
                 max - min < 0.05 * min);
 
     }
