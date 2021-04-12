@@ -1,12 +1,8 @@
-package pt.isel.pc.examples.basics;
+package pt.isel.pc.examples.synchronizers;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pt.isel.pc.examples.synchronizers.NAryFifoSemaphore;
-import pt.isel.pc.examples.synchronizers.NAryFifoSemaphoreWithKernelStyle;
-import pt.isel.pc.examples.synchronizers.NAryFifoSemaphoreWithKernelStyleAndSpecificNotification;
-import pt.isel.pc.examples.synchronizers.NArySemaphore;
 import pt.isel.pc.examples.utils.TestHelper;
 
 import java.time.Duration;
@@ -21,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 
 public class NArySemaphoreTests {
 
-    private static final int N_OF_THREADS = 100;
+    private static final int N_OF_THREADS = 15;
     private static final Duration TEST_DURATION = Duration.ofSeconds(20);
     private static final Logger log = LoggerFactory.getLogger(NArySemaphoreTests.class);
 
