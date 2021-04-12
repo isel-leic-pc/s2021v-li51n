@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotEquals;
 
 public class ThreadingHazardsTests {
 
-    private static final int N_OF_REPS = 5_000_000;
+    private static final int N_OF_REPS = 1_000_000;
     private static final int N_OF_THREADS = 10;
 
     private int simpleCounter = 0;
@@ -25,7 +25,7 @@ public class ThreadingHazardsTests {
         for (int i = 0; i < N_OF_THREADS; ++i) {
             Thread th = new Thread(() -> {
                 // Note that this 'for' runs in different threads
-                for (int j = 0; j < N_OF_REPS; ++j) {
+                for (int j = 0; j < N_OF_REPS * 10; ++j) {
                     ++simpleCounter;
                 }
             });
@@ -312,7 +312,7 @@ public class ThreadingHazardsTests {
         AtomicInteger counter = new AtomicInteger(0);
 
         List<Thread> ths = new ArrayList<>(N_OF_THREADS);
-        for (int i = 0; i < N_OF_THREADS ; ++i) {
+        for (int i = 0; i < N_OF_THREADS; ++i) {
 
             Thread th = new Thread(() -> {
                 // producer
