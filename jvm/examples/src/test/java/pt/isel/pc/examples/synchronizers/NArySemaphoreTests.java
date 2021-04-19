@@ -21,13 +21,13 @@ public class NArySemaphoreTests {
     private static final Duration TEST_DURATION = Duration.ofSeconds(20);
     private static final Logger log = LoggerFactory.getLogger(NArySemaphoreTests.class);
 
-    private void does_not_exceed_max_units(NArySemaphore semaphore, int units) throws InterruptedException {
-        AtomicInteger acquiredUnits = new AtomicInteger(units);
+    private void does_not_exceed_max_units(NArySemaphore semaphore, int maxUnits) throws InterruptedException {
+        AtomicInteger acquiredUnits = new AtomicInteger(maxUnits);
         TestHelper helper = new TestHelper(TEST_DURATION);
 
         helper.createAndStartMultiple(N_OF_THREADS, (ignore, isDone) -> {
             while (!isDone.get()) {
-                int requestedUnits = ThreadLocalRandom.current().nextInt(units) + 1;
+                int requestedUnits = ThreadLocalRandom.current().nextInt(maxUnits) + 1;
                 semaphore.acquire(requestedUnits, Long.MAX_VALUE);
                 try {
                     int current = acquiredUnits.addAndGet(-requestedUnits);
