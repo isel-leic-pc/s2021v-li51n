@@ -1,6 +1,5 @@
 package pt.isel.pc.examples.lockfree;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Range {
@@ -25,7 +24,16 @@ public class Range {
     }
 
     public void setLow(int newLow) {
-
+        while(true) {
+            Holder observedHolder = holder.get();
+            if (newLow > observedHolder.high) {
+                throw new IllegalArgumentException("TODO");
+            }
+            Holder newHolder = new Holder(newLow, observedHolder.high);
+            if (holder.compareAndSet(observedHolder, newHolder)) {
+                return;
+            }
+        }
     }
 
     public void setHigh(int newHigh) {
