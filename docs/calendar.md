@@ -14,8 +14,8 @@
 
 - Third problem set
 
-  - ~Published on 24 May (week 10)~ Published on 5 May (week 11)
-  - ~Delivery on 26 June (week 14)~ Delivery on 10 July (week 16)
+  - ~~Published on 24 May (week 10)~~ Published on 5 May (week 11)
+  - ~~Delivery on 26 June (week 14)~~ Delivery on 10 July (week 16)
 
 ## Weekly outline (plan)
 
