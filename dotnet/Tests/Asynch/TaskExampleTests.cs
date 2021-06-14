@@ -256,7 +256,9 @@ namespace Tests.Asynch
 
             // TODO What happens if the Timer gets CGed?
             new Timer(Callback, null, ms, Timeout.Infinite);
-            
+
+            Task.Delay(1);
+
             // return task
             return tcs.Task;
         }
@@ -269,12 +271,29 @@ namespace Tests.Asynch
         Task<T> MyUnwrap2<T>(Task<Task<T>> wrappedTask)
         {
             var tcs = new TaskCompletionSource<T>();
-
             wrappedTask.ContinueWith(t =>
             {
-                tcs...
+                if (t.Exception != null)
+                {
+                    tcs.SetException(t.Exception);
+                }
+                else
+                {
+                    Task<T> innerTask = t.Result;
+                    innerTask.ContinueWith(t2 =>
+                    {
+                        if (t2.Exception != null)
+                        {
+                            tcs.SetException(t2.Exception);
+                        }
+                        else
+                        {
+                            T value = t2.Result;
+                            tcs.SetResult(value);
+                        }
+                    });
+                }
             });
-
             return tcs.Task;
         }
 
