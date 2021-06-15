@@ -7,7 +7,8 @@ namespace Examples.Asynch
     {
         private class Request
         {
-            public readonly TaskCompletionSource<object> Tcs = new TaskCompletionSource<object>();
+            public readonly TaskCompletionSource<object> Tcs = 
+                new TaskCompletionSource<object>(TaskCreationOptions.RunContinuationsAsynchronously);
         }
 
         private readonly object _theLock = new object();

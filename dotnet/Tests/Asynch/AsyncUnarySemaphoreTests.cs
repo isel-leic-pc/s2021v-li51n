@@ -36,6 +36,10 @@ namespace Tests.Asynch
                 .Select(ix => UseSemaphore(ix, sem))
                 .ToList();
             return Task.WhenAll(tasks);
+            
+            // UseSemaphore(0, sem);
+            // UseSemaphore(1, sem);
+            // ...
         }
         
         
